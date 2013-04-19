@@ -151,6 +151,5 @@ class StudentControllerTests {
         assert Student.count() == 0
         assert Student.get(student.id) == null
         assert response.redirectedUrl == '/student/list'
->>>>>>> Add controller for teacher and student
     }
 }
