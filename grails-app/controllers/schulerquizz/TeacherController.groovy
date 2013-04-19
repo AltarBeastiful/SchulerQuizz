@@ -25,6 +25,9 @@ class TeacherController {
             render(view: "create", model: [teacherInstance: teacherInstance])
             return
         }
+		
+		def teacherRole = Admin.findByAuthority('ROLE_ADMIN')
+		TeacherAdmin.create teacherInstance, teacherRole
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'teacher.label', default: 'Teacher'), teacherInstance.id])
         redirect(action: "show", id: teacherInstance.id)

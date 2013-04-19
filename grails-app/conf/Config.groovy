@@ -91,13 +91,23 @@ log4j = {
 }
 
 // Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/question'
+
+grails.plugins.springsecurity.interceptUrlMap = [
+//	'/secure/**':    ['ROLE_ADMIN'],
+//	'/finance/**':   ['ROLE_FINANCE', 'IS_AUTHENTICATED_FULLY'],
+	'/question/**':  ['ROLE_ADMIN'],
+	
+	'/js/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/css/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/images/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/*':            ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/login/**':     ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/logout/**':    ['IS_AUTHENTICATED_ANONYMOUSLY']
+ ]
 
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'schulerquizz.Teacher'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'schulerquizz.TeacherAdmin'
 grails.plugins.springsecurity.authority.className = 'schulerquizz.Admin'
-
-// Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'schulerquizz.Student'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'schulerquizz.StudentUser'
-grails.plugins.springsecurity.authority.className = 'schulerquizz.User'
