@@ -1,7 +1,6 @@
 package schulerquizz
 
 
-
 import org.junit.*
 import grails.test.mixin.*
 
