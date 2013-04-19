@@ -25,6 +25,12 @@ class QuestionController {
             render(view: "create", model: [questionInstance: questionInstance])
             return
         }
+		
+		session.quickAnswers.each {
+			questionInstance.addToAnswers_default(it)
+		}
+		
+		session.quickAnswers = []
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'question.label', default: 'Question'), questionInstance.id])
         redirect(action: "show", id: questionInstance.id)

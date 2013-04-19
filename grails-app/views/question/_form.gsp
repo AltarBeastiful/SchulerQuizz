@@ -7,7 +7,7 @@
 		<g:message code="question.answers_default.label" default="Answersdefault" />
 		
 	</label>
-	<g:select name="answers_default" from="${schulerquizz.AnswerDefault.list()}" multiple="multiple" optionKey="id" size="5" value="${questionInstance?.answers_default*.id}" class="many-to-many"/>
+	<g:select name="answers_default" from="${session.quickAnswers}" multiple="multiple" optionKey="id" size="5" value="${questionInstance?.answers_default*.id}" class="many-to-many"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: questionInstance, field: 'isClosed', 'error')} ">

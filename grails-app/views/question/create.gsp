@@ -39,7 +39,7 @@
 			<g:form action="../AnswerDefault/saveQuickAnswer" >
 				<fieldset class="formDefaultAnswer">
 					<g:render template="formDefaultAnswer"/>		
-					<g:submitButton name="add" class="../AnswerDefault/saveQuickAnswer" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="add" class="../AnswerDefault/saveQuickAnswer" value="${message(code: 'default.button.add.label', default: 'Add')}" />
 				</fieldset>
 			</g:form>			
 		</div>

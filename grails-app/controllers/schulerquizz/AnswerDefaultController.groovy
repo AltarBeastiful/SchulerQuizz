@@ -24,6 +24,11 @@ class AnswerDefaultController {
 		if (!answerDefaultInstance.save(flush: true)) {
 			redirect(action: "../Question/create")
 		}
+
+		if( !session.quickAnswers )
+			session.quickAnswers = []
+			
+		session.quickAnswers << answerDefaultInstance
 		redirect(action: "../Question/create")
 	}
 	
