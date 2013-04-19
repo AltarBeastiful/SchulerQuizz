@@ -32,6 +32,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${answerDefaultInstance?.votes}">
+				<li class="fieldcontain">
+					<span id="votes-label" class="property-label"><g:message code="answerDefault.votes.label" default="Votes" /></span>
+					
+						<span class="property-value" aria-labelledby="votes-label"><g:fieldValue bean="${answerDefaultInstance}" field="votes"/></span>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

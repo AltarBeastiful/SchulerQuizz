@@ -34,14 +34,14 @@
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 				</fieldset>
 			</g:form>
-			
+						
 			<h1>Add an answer quickly</h1>
 			<g:form action="../AnswerDefault/saveQuickAnswer" >
 				<fieldset class="formDefaultAnswer">
 					<g:render template="formDefaultAnswer"/>		
 					<g:submitButton name="add" class="../AnswerDefault/saveQuickAnswer" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 				</fieldset>
-			</g:form>
+			</g:form>			
 		</div>
 	</body>
 </html>

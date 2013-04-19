@@ -23,26 +23,7 @@
 			</g:if>
 			<ol class="property-list question">
 			
-				<g:if test="${questionInstance?.answers_default}">
-				<li class="fieldcontain">
-					<span id="answers_default-label" class="property-label"><g:message code="question.answers_default.label" default="Answersdefault" /></span>
-					
-						<g:each in="${questionInstance.answers_default}" var="a">
-						<span class="property-value" aria-labelledby="answers_default-label"><g:link controller="answerDefault" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${questionInstance?.multipleAnswer}">
-				<li class="fieldcontain">
-					<span id="multipleAnswer-label" class="property-label"><g:message code="question.multipleAnswer.label" default="Multiple Answer" /></span>
-					
-						<span class="property-value" aria-labelledby="multipleAnswer-label"><g:formatBoolean boolean="${questionInstance?.multipleAnswer}" /></span>
-					
-				</li>
-				</g:if>
-			
+						
 				<g:if test="${questionInstance?.name}">
 				<li class="fieldcontain">
 					<span id="name-label" class="property-label"><g:message code="question.name.label" default="Name" /></span>
@@ -61,12 +42,28 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${questionInstance?.answers_default}">
+				<li class="fieldcontain">
+					<span id="answers_default-label" class="property-label"><g:message code="question.answers_default.label" default="Answersdefault" /></span>
+					
+						<g:each in="${questionInstance.answers_default}" var="a">
+						<span class="property-value" aria-labelledby="answers_default-label"><g:link controller="answerDefault" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
+						</g:each>
+				</li>			
+				</g:if>
 			</ol>
+			
+			
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${questionInstance?.id}" />
 					<g:link class="edit" action="edit" id="${questionInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					
+				<g:if test="${questionInstance?.isClosed != true}">
+					<g:actionSubmit class="close" action="close" value="${message(code: 'default.button.close.label', default: 'Close')}" onclick="return confirm('${message(code: 'default.button.close.confirm.message', default: 'Are you sure?')}');" />
+				</g:if>
+				
 				</fieldset>
 			</g:form>
 		</div>

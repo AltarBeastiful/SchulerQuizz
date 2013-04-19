@@ -3,8 +3,10 @@ package schulerquizz
 class AnswerDefault {
 	
 	String name
+	int votes
 
     static constraints = {
+		
     }
 
 	@Override

@@ -24,11 +24,13 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="multipleAnswer" title="${message(code: 'question.multipleAnswer.label', default: 'Multiple Answer')}" />
-					
 						<g:sortableColumn property="name" title="${message(code: 'question.name.label', default: 'Name')}" />
-					
+						
 						<g:sortableColumn property="text" title="${message(code: 'question.text.label', default: 'Text')}" />
+						
+						<g:sortableColumn property="isClosed" title="${message(code: 'question.isClosed.label', default: 'Is Closed')}" />
+						
+						<g:sortableColumn property="multipleAnswer" title="${message(code: 'question.multipleAnswer.label', default: 'Multiple Answer')}" />
 					
 					</tr>
 				</thead>
@@ -36,11 +38,13 @@
 				<g:each in="${questionInstanceList}" status="i" var="questionInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${questionInstance.id}">${fieldValue(bean: questionInstance, field: "multipleAnswer")}</g:link></td>
-					
-						<td>${fieldValue(bean: questionInstance, field: "name")}</td>
-					
+						<td><g:link action="show" id="${questionInstance.id}">${fieldValue(bean: questionInstance, field: "name")}</g:link></td>
+						
 						<td>${fieldValue(bean: questionInstance, field: "text")}</td>
+						
+						<td><g:formatBoolean boolean="${questionInstance.isClosed}" /></td>
+					
+						<td><g:formatBoolean boolean="${questionInstance.multipleAnswer}" /></td>	
 					
 					</tr>
 				</g:each>
