@@ -18,20 +18,20 @@
 	<g:textField name="password" required="" value="${teacherInstance?.password}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: teacherInstance, field: 'accountExpired', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: teacherInstance, field: 'accountExpired', 'error')} "  hidden="true">
 	<label for="accountExpired">
 		<g:message code="teacher.accountExpired.label" default="Account Expired" />
 		
 	</label>
-	<g:checkBox name="accountExpired" value="${teacherInstance?.accountExpired}" />
+	<g:checkBox name="accountExpired" value="false" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: teacherInstance, field: 'accountLocked', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: teacherInstance, field: 'accountLocked', 'error')} "  hidden="true">
 	<label for="accountLocked">
 		<g:message code="teacher.accountLocked.label" default="Account Locked" />
 		
 	</label>
-	<g:checkBox name="accountLocked" value="${teacherInstance?.accountLocked}" />
+	<g:checkBox name="accountLocked" value="false" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: teacherInstance, field: 'email', 'error')} ">
@@ -42,12 +42,12 @@
 	<g:textField name="email" value="${teacherInstance?.email}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: teacherInstance, field: 'enabled', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: teacherInstance, field: 'enabled', 'error')} " hidden="true">
 	<label for="enabled">
 		<g:message code="teacher.enabled.label" default="Enabled" />
 		
 	</label>
-	<g:checkBox name="enabled" value="${teacherInstance?.enabled}" />
+	<g:checkBox name="enabled" value="true" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: teacherInstance, field: 'name', 'error')} ">
@@ -58,12 +58,12 @@
 	<g:textField name="name" value="${teacherInstance?.name}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: teacherInstance, field: 'passwordExpired', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: teacherInstance, field: 'passwordExpired', 'error')} " hidden="true">
 	<label for="passwordExpired">
 		<g:message code="teacher.passwordExpired.label" default="Password Expired" />
 		
 	</label>
-	<g:checkBox name="passwordExpired" value="${teacherInstance?.passwordExpired}" />
+	<g:checkBox name="passwordExpired" value="false" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: teacherInstance, field: 'surname', 'error')} ">
