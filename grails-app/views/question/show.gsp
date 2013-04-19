@@ -23,12 +23,12 @@
 			</g:if>
 			<ol class="property-list question">
 			
-				<g:if test="${questionInstance?.answers}">
+				<g:if test="${questionInstance?.answers_default}">
 				<li class="fieldcontain">
-					<span id="answers-label" class="property-label"><g:message code="question.answers.label" default="Answers" /></span>
+					<span id="answers_default-label" class="property-label"><g:message code="question.answers_default.label" default="Answersdefault" /></span>
 					
-						<g:each in="${questionInstance.answers}" var="a">
-						<span class="property-value" aria-labelledby="answers-label"><g:link controller="answer" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
+						<g:each in="${questionInstance.answers_default}" var="a">
+						<span class="property-value" aria-labelledby="answers_default-label"><g:link controller="answerDefault" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -57,15 +57,6 @@
 					<span id="text-label" class="property-label"><g:message code="question.text.label" default="Text" /></span>
 					
 						<span class="property-value" aria-labelledby="text-label"><g:fieldValue bean="${questionInstance}" field="text"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${questionInstance?.type}">
-				<li class="fieldcontain">
-					<span id="type-label" class="property-label"><g:message code="question.type.label" default="Type" /></span>
-					
-						<span class="property-value" aria-labelledby="type-label"><g:fieldValue bean="${questionInstance}" field="type"/></span>
 					
 				</li>
 				</g:if>

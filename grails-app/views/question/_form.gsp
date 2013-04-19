@@ -2,12 +2,13 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: questionInstance, field: 'answers', 'error')} ">
-	<label for="answers">
-		<g:message code="question.answers.label" default="Answers" />
+<div class="fieldcontain ${hasErrors(bean: questionInstance, field: 'answers_default', 'error')} ">
+	<label for="answers_default">
+		<g:message code="question.answers_default.label" default="Answersdefault" />
 		
 	</label>
-	<g:select name="answers" from="${schulerquizz.Answer.list()}" multiple="multiple" optionKey="id" size="5" value="${questionInstance?.answers*.id}" class="many-to-many"/>
+	<g:select name="answers_default" from="${schulerquizz.AnswerDefault.list()}" multiple="multiple" optionKey="id" size="5" value="${questionInstance?.answers_default*.id}" class="many-to-many"/>
+
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: questionInstance, field: 'multipleAnswer', 'error')} ">
@@ -32,13 +33,5 @@
 		
 	</label>
 	<g:textField name="text" value="${questionInstance?.text}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: questionInstance, field: 'type', 'error')} ">
-	<label for="type">
-		<g:message code="question.type.label" default="Type" />
-		
-	</label>
-	<g:textField name="type" value="${questionInstance?.type}"/>
 </div>
 

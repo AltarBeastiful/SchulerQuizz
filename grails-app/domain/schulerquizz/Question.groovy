@@ -2,11 +2,10 @@ package schulerquizz
 
 class Question {
 	String name 
-	String text 
-	String type 
+	String text  
 	boolean multipleAnswer  
 	
-	static hasMany = [answers:Answer]
+	static hasMany = [answers_default:AnswerDefault]
 	
     static constraints = {
     }

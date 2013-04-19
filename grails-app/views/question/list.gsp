@@ -30,8 +30,6 @@
 					
 						<g:sortableColumn property="text" title="${message(code: 'question.text.label', default: 'Text')}" />
 					
-						<g:sortableColumn property="type" title="${message(code: 'question.type.label', default: 'Type')}" />
-					
 					</tr>
 				</thead>
 				<tbody>
@@ -43,8 +41,6 @@
 						<td>${fieldValue(bean: questionInstance, field: "name")}</td>
 					
 						<td>${fieldValue(bean: questionInstance, field: "text")}</td>
-					
-						<td>${fieldValue(bean: questionInstance, field: "type")}</td>
 					
 					</tr>
 				</g:each>
