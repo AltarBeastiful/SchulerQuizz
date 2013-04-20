@@ -38,6 +38,15 @@
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
+			
+			<h1>Add an answer quickly</h1>
+			<g:form action="../AnswerDefault/saveQuickAnswerEdit" >
+			<g:hiddenField name="id" value="${questionInstance?.id}" />	
+				<fieldset class="formDefaultAnswer">
+					<g:render template="formDefaultAnswer"/>		
+					<g:submitButton name="add" class="../AnswerDefault/saveQuickAnswerEdit" value="${message(code: 'default.button.add.label', default: 'Add')}" />
+				</fieldset>
+			</g:form>			
 		</div>
 	</body>
 </html>

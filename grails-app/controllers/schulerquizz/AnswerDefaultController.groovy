@@ -25,11 +25,22 @@ class AnswerDefaultController {
 			redirect(action: "../Question/create")
 		}
 
-		if( !session.quickAnswers )
-			session.quickAnswers = []
+		if( !session.quickAnswers ) session.quickAnswers = []
 			
 		session.quickAnswers << answerDefaultInstance
 		redirect(action: "../Question/create")
+	}
+	
+	def saveQuickAnswerEdit(Long id) {
+		def answerDefaultInstance = new AnswerDefault(params)
+		if (!answerDefaultInstance.save(flush: true)) {
+			redirect(action: "../Question/create")
+		}
+
+		if( !session.quickAnswers ) session.quickAnswers = []
+			
+		session.quickAnswers << answerDefaultInstance
+		redirect(action: "../Question/edit/"+id)
 	}
 	
     def save() {

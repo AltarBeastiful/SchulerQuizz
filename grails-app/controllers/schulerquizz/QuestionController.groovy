@@ -92,6 +92,13 @@ class QuestionController {
             render(view: "edit", model: [questionInstance: questionInstance])
             return
         }
+		/* TODO : check if needed
+		session.quickAnswers.each {
+			questionInstance.addToAnswers_default(it)
+		}
+		
+		session.quickAnswers = []
+		*/
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'question.label', default: 'Question'), questionInstance.id])
         redirect(action: "show", id: questionInstance.id)

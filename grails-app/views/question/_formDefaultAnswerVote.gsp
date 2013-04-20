@@ -6,7 +6,6 @@
 	<g:if test="${flash.message}">
 		<div class="message" role="status">${flash.message}</div>
 	</g:if>
-	
 	<table>
 		<thead>
 			<tr>					
@@ -24,10 +23,10 @@
 					<td><g:fieldValue bean="${answer}" field="name"/></td>
 				
 					<g:if test="${questionInstance.multipleAnswer }">
-						<td><g:checkBox name="multipleAnswer" value="false" /></td>
-					</g:if>	
+						<td><g:checkBox name="answer.id" value="false" /></td>
+					</g:if>
 					<g:else>
-						<td><g:radio name="answers" value="answer.id" checked="false"/></td>
+						<td><g:radio name="answer.id" value="answer.id" checked="false"/></td>
 					</g:else>
 				</tr>
 			</g:each>
