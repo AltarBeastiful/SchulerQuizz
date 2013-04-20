@@ -78,8 +78,40 @@ class QuestionController {
 		redirect(action: "show",id: questionInstance.id)
 	}
 	
-	def vote() {
+	def vote(Long id) {
+		println "Vote reached with params : " + params.idQuestion
+		println params.multipleAnswer
 		// TODO 
+		if(!session.vote)
+			session.vote = [:]			
+		
+		if(params.multipleAnswer){
+			//put every answer at false
+			session.vote[params.idQuestion] = [:]
+			
+			if(params.multipleAnswer instanceof String)
+				params.multipleAnswer = [params.multipleAnswer]
+			
+//			params.id.each {
+//				session.vote[params.idQuestion][it] = false
+//			}
+			//True to choosed answers
+			params.multipleAnswer.each {
+				session.vote[params.idQuestion][it] = true
+			}
+						
+		}else if(params.answers){
+			session.vote[params.idQuestion] = [:]
+			//put every answer at false
+//			params.id.each {
+//				session.vote[params.idQuestion][it] = false
+//			}
+			session.vote[params.idQuestion][params.answers] = true
+		}
+		
+		println session.vote[params.idQuestion]
+			
+		
 	}
 
     def edit(Long id) {
