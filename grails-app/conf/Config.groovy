@@ -97,8 +97,11 @@ grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/question'
 grails.plugins.springsecurity.interceptUrlMap = [
 //	'/secure/**':    ['ROLE_ADMIN'],
 //	'/finance/**':   ['ROLE_FINANCE', 'IS_AUTHENTICATED_FULLY'],
-	'/question/create/**':  ['ROLE_ADMIN'],
+//	'/question/create/**':  ['ROLE_ADMIN'],
 	'/question/list/**':  ['IS_AUTHENTICATED_ANONYMOUSLY'],
+
+	
+>>>>>>> Unlock the question module : anoying to develop if u have to log each time
 	'/js/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/css/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/images/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
