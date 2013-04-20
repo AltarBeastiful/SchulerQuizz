@@ -100,8 +100,6 @@ grails.plugins.springsecurity.interceptUrlMap = [
 //	'/question/create/**':  ['ROLE_ADMIN'],
 	'/question/list/**':  ['IS_AUTHENTICATED_ANONYMOUSLY'],
 
-	
->>>>>>> Unlock the question module : anoying to develop if u have to log each time
 	'/js/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/css/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/images/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
