@@ -52,6 +52,10 @@ class QuestionController {
 		questionInstance.isClosed = true 
 		redirect(action: "show",id: questionInstance.id)
 	}
+	
+	def vote() {
+		// TODO 
+	}
 
     def edit(Long id) {
         def questionInstance = Question.get(id)

@@ -41,18 +41,18 @@
 					
 				</li>
 				</g:if>
-			
+									
 				<g:if test="${questionInstance?.answers_default}">
-				<li class="fieldcontain">
-					<span id="answers_default-label" class="property-label"><g:message code="question.answers_default.label" default="Answersdefault" /></span>
-					
-						<g:each in="${questionInstance.answers_default}" var="a">
-						<span class="property-value" aria-labelledby="answers_default-label"><g:link controller="answerDefault" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
-						</g:each>
-				</li>			
-				</g:if>
-			</ol>
-			
+					<li class="fieldcontain">	
+						<g:form action="vote" >
+							<li class="fieldcontain">	
+								<g:render template="formDefaultAnswerVote"/>		
+								<g:submitButton name="Vote" class="vote" value="${message(code: 'default.button.add.label', default: 'Vote')}" />
+							</li>
+						</g:form>			
+					</li>
+				</g:if>			
+			</ol>			
 			
 			<g:form>
 				<fieldset class="buttons">
