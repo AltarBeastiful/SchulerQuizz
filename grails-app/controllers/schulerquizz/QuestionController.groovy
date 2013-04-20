@@ -65,18 +65,18 @@ class QuestionController {
 		def questionInstance = Question.get(id)
 		if (!questionInstance.isClosed)  render(view: "statistics", id: questionInstance.id) // do somthesing else !
 		
-		int total = 500
+		int total = 1
 		// to know how many votes
 		questionInstance.answers_default.each {
-			total += it.votes  	
+			total = total + it.votes  	
 		}
 		
 		if (total != 0 ) {
 			// to get percentage of each answer
 			def percentages = [:]
 			questionInstance.answers_default.each {
-				//percentages[it.id] = (it.votes *100) /total
-				percentages[it.id] = (it.id *100) /total // to erase when vote system done 
+				percentages[it.id] = (it.votes *100) /total
+				//percentages[it.id] = (it.id *100) /total // to erase when vote system done 
 			}
 			
 			[questionInstance: questionInstance , total_votes: total , percentages: percentages  ]
@@ -94,7 +94,9 @@ class QuestionController {
 	def vote(Long id) {
 		println "Vote reached with params : " + params.idQuestion
 		println params.multipleAnswer
+
 		println params.answers
+
 		// TODO 
 		if(!session.vote)
 			session.vote = [:]			
@@ -123,7 +125,7 @@ class QuestionController {
 		}
 		
 		println session.vote[params.idQuestion]
-			
+		
 		
 	}
 
