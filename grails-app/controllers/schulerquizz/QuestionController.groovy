@@ -44,6 +44,11 @@ class QuestionController {
             redirect(action: "list")
             return
         }
+		
+//		def voted = false
+//		if(session.vote && session.vote[id] ){
+//			
+//		}
 
         [questionInstance: questionInstance]
     }
@@ -92,21 +97,19 @@ class QuestionController {
 			if(params.multipleAnswer instanceof String)
 				params.multipleAnswer = [params.multipleAnswer]
 			
-//			params.id.each {
-//				session.vote[params.idQuestion][it] = false
-//			}
 			//True to choosed answers
 			params.multipleAnswer.each {
-				session.vote[params.idQuestion][it] = true
+				session.vote[params.idQuestion][it] = 'on'
+				def a = AnswerDefault.get(it)
+				a.setVotes(a.getVotes()+1)
 			}
 						
 		}else if(params.answers){
 			session.vote[params.idQuestion] = [:]
 			//put every answer at false
-//			params.id.each {
-//				session.vote[params.idQuestion][it] = false
-//			}
 			session.vote[params.idQuestion][params.answers] = true
+			def a = AnswerDefault.get(it)
+			a.setVotes(a.getVotes()+1)
 		}
 		
 		println session.vote[params.idQuestion]

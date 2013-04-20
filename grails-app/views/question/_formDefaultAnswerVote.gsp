@@ -29,7 +29,7 @@
 					<td><g:textField name="rien" value="${session.vote && session.vote[questionInstance.id] && session.vote[questionInstance.id][answer.id]? session.vote[questionInstance.id][answer.id] : 'non'}" />	</td>
 					
 					<g:if test="${questionInstance.multipleAnswer }">
-						<td><g:checkBox name="multipleAnswer" value="${answer.id}" checked="${session.vote && session.vote[questionInstance.id] && session.vote[questionInstance.id][answer.id]? session.vote[questionInstance.id][answer.id] : 'false'}" /></td>
+						<td><g:checkBox name="multipleAnswer" value="${answer.id}" checked="${session.vote && session.vote[questionInstance.id] && session.vote[questionInstance.id][answer.id]? session.vote[questionInstance.id][answer.id] : ''}" /></td>
 					</g:if>	
 					<g:else>
 						<td><g:radio name="answers" value="${answer.id}" checked="${session.vote && session.vote[questionInstance.id] && session.vote[questionInstance.id][answer.id]? session.vote[questionInstance.id][answer.id] : 'false'}"/></td>
