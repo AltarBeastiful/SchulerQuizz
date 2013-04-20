@@ -45,9 +45,10 @@
 				<g:if test="${questionInstance?.answers_default}">
 					<li class="fieldcontain">	
 						<g:form action="vote" >
+							<g:hiddenField name="idQuestion" value="${questionInstance?.id}" />
 							<li class="fieldcontain">	
 								<g:render template="formDefaultAnswerVote"/>		
-								<g:submitButton name="Vote" class="vote" value="${message(code: 'default.button.add.label', default: 'Vote')}" />
+								<g:submitButton name="Vote" class="vote" action="vote" value="${message(code: 'default.button.add.label', default: 'Vote')}" />
 							</li>
 						</g:form>			
 					</li>
