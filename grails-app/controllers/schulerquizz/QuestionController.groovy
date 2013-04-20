@@ -5,7 +5,8 @@ import org.springframework.dao.DataIntegrityViolationException
 class QuestionController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
+	static defaultAction = "list"
+    
     def index() {
         redirect(action: "list", params: params)
     }
@@ -46,6 +47,30 @@ class QuestionController {
 
         [questionInstance: questionInstance]
     }
+	
+	def statistics(Long id) {
+		def questionInstance = Question.get(id)
+		if (!questionInstance.isClosed)  render(view: "statistics", id: questionInstance.id) // do somthesing else !
+		
+		int total = 500
+		// to know how many votes
+		questionInstance.answers_default.each {
+			total += it.votes  	
+		}
+		
+		if (total != 0 ) {
+			// to get percentage of each answer
+			def percentages = [:]
+			questionInstance.answers_default.each {
+				//percentages[it.id] = (it.votes *100) /total
+				percentages[it.id] = (it.id *100) /total // to erase when vote system done 
+			}
+			
+			[questionInstance: questionInstance , total_votes: total , percentages: percentages  ]
+		}
+		else return
+		
+	}
 	
 	def close(Long id) {
 		def questionInstance = Question.get(id)

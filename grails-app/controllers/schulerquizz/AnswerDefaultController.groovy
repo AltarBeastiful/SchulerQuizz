@@ -45,6 +45,7 @@ class AnswerDefaultController {
 	
     def save() {
         def answerDefaultInstance = new AnswerDefault(params)
+		answerDefaultInstance.votes = 0 
         if (!answerDefaultInstance.save(flush: true)) {
             render(view: "create", model: [answerDefaultInstance: answerDefaultInstance])
             return

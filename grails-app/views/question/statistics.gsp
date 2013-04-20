@@ -40,16 +40,42 @@
 						<span class="property-value" aria-labelledby="text-label"><g:fieldValue bean="${questionInstance}" field="text"/></span>
 					
 				</li>
-				</g:if>
-									
+				</g:if>					
 				<g:if test="${questionInstance?.answers_default}">
 					<li class="fieldcontain">	
-						<g:form action="vote" >
-							<li class="fieldcontain">	
-								<g:render template="formDefaultAnswerVote"/>		
-								<g:submitButton name="Vote" class="vote" value="${message(code: 'default.button.add.label', default: 'Vote')}" />
-							</li>
-						</g:form>			
+						<div id="list-answer" class="content scaffold-list" role="main">
+							<h1>Answers Stats : ${total_votes} votes</h1> 
+							<g:if test="${flash.message}">
+								<div class="message" role="status">
+									${flash.message}
+								</div>
+							</g:if>
+							<table>
+								<thead>
+									<tr>
+										<g:sortableColumn property="name" title="Answers" />
+	
+										<g:sortableColumn property="amount" title="Votes Amount" />
+										
+										<g:sortableColumn property="stats" title="Statistics" />
+									</tr>
+								</thead>
+								<tbody>
+									<g:each in="${questionInstance.answers_default}" var="answer">
+										<tr>
+											<!-- <td><g:link action="show" id="${answer.id}">${fieldValue(bean: answerDefault, field: "name")}</g:link></td> -->
+	
+											<td><g:fieldValue bean="${answer}" field="name" /></td>
+											
+											<td><g:field name= "amount" type="text" value="${answer.votes}" readonly="readonly" /></td>
+								
+											<td><g:field name= "percentage" type="text" value="${percentages[answer.id]} %" readonly="readonly"  /></td>
+										
+										</tr>
+									</g:each>
+								</tbody>
+							</table>
+						</div>
 					</li>
 				</g:if>			
 			</ol>			
@@ -64,7 +90,7 @@
 					<g:actionSubmit action="close" value="${message(code: 'default.button.close.label', default: 'Close')}" onclick="return confirm('${message(code: 'default.button.close.confirm.message', default: 'Are you sure?')}');" />
 				</g:if>
 				<g:else>
-					<g:link action="statistics" id="${questionInstance.id}"><g:message code="default.button.statistics.label" default='Statistics'/></g:link>
+					<g:link class="statistics" action="statistics" id="${questionInstance?.id}"><g:message code="default.button.statistics.label" default='Statistics'/></g:link>
 				</g:else>
 				
 				</fieldset>
