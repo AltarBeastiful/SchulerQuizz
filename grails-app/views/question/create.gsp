@@ -36,7 +36,7 @@
 			</g:form>
 						
 			<h1>Add an answer quickly</h1>
-			<g:form action="../AnswerDefault/saveQuickAnswer" >
+			<g:form action="../AnswerDefault/saveQuickAnswer">
 				<fieldset class="formDefaultAnswer">
 					<g:render template="formDefaultAnswer"/>		
 					<g:submitButton name="add" class="../AnswerDefault/saveQuickAnswer" value="${message(code: 'default.button.add.label', default: 'Add')}" />
