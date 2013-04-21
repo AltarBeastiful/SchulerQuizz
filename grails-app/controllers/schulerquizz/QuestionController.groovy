@@ -45,10 +45,18 @@ class QuestionController {
             return
         }
 		
-//		def voted = false
-//		if(session.vote && session.vote[id] ){
-//			
-//		}
+		def voted = false
+		println "Testing vote with id " + id
+		println session.vote
+		def questionId = String.valueOf(id)
+		
+		if(session.vote && session.vote[questionId] && session.vote[questionId].size() > 0){
+			println "I have voted"
+			voted = true
+			flash.vote = session.vote[questionId]
+		}
+		
+		flash.voted = voted
 
         [questionInstance: questionInstance]
     }
@@ -86,6 +94,7 @@ class QuestionController {
 	def vote(Long id) {
 		println "Vote reached with params : " + params.idQuestion
 		println params.multipleAnswer
+		println params.answers
 		// TODO 
 		if(!session.vote)
 			session.vote = [:]			
@@ -99,16 +108,17 @@ class QuestionController {
 			
 			//True to choosed answers
 			params.multipleAnswer.each {
-				session.vote[params.idQuestion][it] = 'on'
+				session.vote[params.idQuestion][it] = 'true'
 				def a = AnswerDefault.get(it)
 				a.setVotes(a.getVotes()+1)
 			}
 						
 		}else if(params.answers){
 			session.vote[params.idQuestion] = [:]
+			
 			//put every answer at false
-			session.vote[params.idQuestion][params.answers] = true
-			def a = AnswerDefault.get(it)
+			session.vote[params.idQuestion][params.answers] = 'true'
+			def a = AnswerDefault.get(params.answers)
 			a.setVotes(a.getVotes()+1)
 		}
 		

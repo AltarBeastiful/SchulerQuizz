@@ -47,8 +47,13 @@
 						<g:form action="vote" >
 							<g:hiddenField name="idQuestion" value="${questionInstance?.id}" />
 							<li class="fieldcontain">	
-								<g:render template="formDefaultAnswerVote"/>		
-								<g:submitButton name="Vote" class="vote" action="vote" value="${message(code: 'default.button.add.label', default: 'Vote')}" />
+								<g:render template="formDefaultAnswerVote"/>
+								<g:if test="${flash.voted}">
+									<g:submitButton name="Vote" class="vote" action="vote" value="${message(code: 'default.button.add.label', default: 'Vote')}" disabled="disabled" />
+								</g:if>
+								<g:else>
+									<g:submitButton name="Vote" class="vote" action="vote" value="${message(code: 'default.button.add.label', default: 'Vote')}"  />
+								</g:else>
 							</li>
 						</g:form>			
 					</li>
