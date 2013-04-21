@@ -51,7 +51,7 @@
 							<g:hiddenField name="idQuestion" value="${questionInstance?.id}" />
 							<li class="fieldcontain">	
 								<g:render template="formDefaultAnswerVote"/>
-								<g:if test="${flash.voted}">
+								<g:if test="${flash.voted || questionInstance?.isClosed}">
 									<g:submitButton name="Vote" class="vote" action="vote" value="${message(code: 'default.button.add.label', default: 'Vote')}" disabled="disabled" />
 								</g:if>
 								<g:else>
