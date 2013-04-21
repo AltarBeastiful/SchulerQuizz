@@ -17,21 +17,31 @@ class QuestionController {
     }
 
     def create() {
-        [questionInstance: new Question(params)]
+		// search for orphean answers to display them
+	
+		def orphanAnwers = AnswerDefault.findAllWhere( question: null )
+        [questionInstance: new Question(params), orphanAnwers:orphanAnwers]
     }
 
     def save() {
         def questionInstance = new Question(params)
+		
+		def orphanAnwers = AnswerDefault.findAllWhere( question: null )
+		// connect question to answers
+		orphanAnwers.each {
+			questionInstance.addToAnswers_default(it)
+		}
+	
         if (!questionInstance.save(flush: true)) {
             render(view: "create", model: [questionInstance: questionInstance])
             return
         }
 		
-		session.quickAnswers.each {
-			questionInstance.addToAnswers_default(it)
+		// connect answer to question
+		orphanAnwers.each {
+			it.question = questionInstance
+			if(!it.save(flush: true)) System.out.println("TOTO");
 		}
-		
-		session.quickAnswers = []
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'question.label', default: 'Question'), questionInstance.id])
         redirect(action: "show", id: questionInstance.id)
@@ -128,14 +138,21 @@ class QuestionController {
 	}
 
     def edit(Long id) {
+		
         def questionInstance = Question.get(id)
         if (!questionInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Question'), id])
             redirect(action: "list")
             return
         }
+		
+		// retrieve orphans & children answers
+		def orphanAnwers = AnswerDefault.findAllWhere( question: null )
+		def childrenAnwers = AnswerDefault.findAllWhere( question: questionInstance )
+		  
+		orphanAnwers.addAll(childrenAnwers)
 
-        [questionInstance: questionInstance]
+        [questionInstance: questionInstance , orphanAnwers:orphanAnwers]
     }
 
     def update(Long id, Long version) {
@@ -158,18 +175,23 @@ class QuestionController {
 
         questionInstance.properties = params
 
+		def orphanAnwers = AnswerDefault.findAllWhere( question: null )
+		// connect question to answers
+		orphanAnwers.each {
+			questionInstance.addToAnswers_default(it)
+		}
+		
         if (!questionInstance.save(flush: true)) {
             render(view: "edit", model: [questionInstance: questionInstance])
             return
         }
-		/* TODO : check if needed
-		session.quickAnswers.each {
-			questionInstance.addToAnswers_default(it)
+		
+		// connect answer to question
+		orphanAnwers.each {
+			it.question = questionInstance
+			if(!it.save(flush: true)) System.out.println("TOTO");
 		}
 		
-		session.quickAnswers = []
-		*/
-
         flash.message = message(code: 'default.updated.message', args: [message(code: 'question.label', default: 'Question'), questionInstance.id])
         redirect(action: "show", id: questionInstance.id)
     }

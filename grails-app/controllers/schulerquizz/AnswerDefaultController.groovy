@@ -21,14 +21,18 @@ class AnswerDefaultController {
 	
 	def saveQuickAnswer() {
 		def answerDefaultInstance = new AnswerDefault(params)
+		answerDefaultInstance.question = null 
+		
 		if (!answerDefaultInstance.save(flush: true)) {
 			redirect(action: "../Question/create")
+			return
 		}
 
-		if( !session.quickAnswers ) session.quickAnswers = []
+		//if( !session.quickAnswers ) session.quickAnswers = []
 			
-		session.quickAnswers << answerDefaultInstance
+		//session.quickAnswers << answerDefaultInstance
 		redirect(action: "../Question/create")
+		return 
 	}
 	
 	def saveQuickAnswerEdit(Long id) {
@@ -45,7 +49,7 @@ class AnswerDefaultController {
 	
     def save() {
         def answerDefaultInstance = new AnswerDefault(params)
-		answerDefaultInstance.votes = 0 
+		answerDefaultInstance.votes = 0
         if (!answerDefaultInstance.save(flush: true)) {
             render(view: "create", model: [answerDefaultInstance: answerDefaultInstance])
             return
