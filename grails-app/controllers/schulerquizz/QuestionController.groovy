@@ -65,6 +65,13 @@ class QuestionController {
 		}
 		
 		flash.voted = voted
+		
+		int total = 0
+		// to know how many votes
+		questionInstance.answers_default.each {
+			total = total + it.votes
+		}
+		flash.totalVote = total
 
         [questionInstance: questionInstance]
     }

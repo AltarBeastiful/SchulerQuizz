@@ -30,7 +30,7 @@ class TeacherController {
 		TeacherAdmin.create teacherInstance, teacherRole
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'teacher.label', default: 'Teacher'), teacherInstance.id])
-        redirect(action: "show", id: teacherInstance.id)
+        redirect(controller: "question")
     }
 
     def show(Long id) {

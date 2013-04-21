@@ -48,6 +48,7 @@
 				<g:if test="${questionInstance?.answers_default}">
 					<li class="fieldcontain">
 						<sec:ifAllGranted roles="ROLE_ADMIN">
+							<h1>Answers Stats : ${flash.totalVote} votes</h1> 
 							<div id="list-answer" class="content scaffold-list" role="main">
 							<h1>List answers</h1>
 								<g:if test="${flash.message}">
