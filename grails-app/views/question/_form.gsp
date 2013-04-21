@@ -10,14 +10,6 @@
 	<g:select name="answers_default" from="${session.quickAnswers}" multiple="multiple" optionKey="id" size="5" value="${questionInstance?.answers_default*.id}" class="many-to-many"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: questionInstance, field: 'isClosed', 'error')} ">
-	<label for="isClosed">
-		<g:message code="question.isClosed.label" default="Is Closed" />
-		
-	</label>
-	<g:checkBox name="isClosed" value="${questionInstance?.isClosed}" />
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: questionInstance, field: 'multipleAnswer', 'error')} ">
 	<label for="multipleAnswer">
 		<g:message code="question.multipleAnswer.label" default="Multiple Answer" />
