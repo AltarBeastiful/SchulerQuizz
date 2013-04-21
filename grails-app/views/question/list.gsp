@@ -19,6 +19,7 @@
 					<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 					<li><g:link controller='logout' >Logout</g:link></li>
 				</sec:ifAllGranted>
+				<li><g:link controller='Teacher' action='create'>Register a Teacher</g:link></li>
 			</ul>
 		</div>
 		<div id="list-question" class="content scaffold-list" role="main">
