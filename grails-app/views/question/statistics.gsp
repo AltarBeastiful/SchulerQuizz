@@ -76,7 +76,6 @@
 					</g:if>	
 				</div>	
 			</ol>	
-					
 			<sec:ifAllGranted roles="ROLE_ADMIN">	
 				<g:form>
 					<fieldset class="buttons">
@@ -88,6 +87,7 @@
 							</g:if>
 							<g:else>
 								<g:link action="statistics" id="${questionInstance.id}"><g:message code="default.button.statistics.label" default='Statistics'/></g:link>
+								<g:link action="open" id="${questionInstance.id}"><g:message code="default.button.open.label" default='Open'/></g:link>
 							</g:else>
 					</fieldset>
 				</g:form>

@@ -46,19 +46,40 @@
 				</g:if>
 									
 				<g:if test="${questionInstance?.answers_default}">
-					<li class="fieldcontain">	
-						<g:form action="vote" >
-							<g:hiddenField name="idQuestion" value="${questionInstance?.id}" />
-							<li class="fieldcontain">	
-								<g:render template="formDefaultAnswerVote"/>
-								<g:if test="${flash.voted || questionInstance?.isClosed}">
-									<g:submitButton name="Vote" class="vote" action="vote" value="${message(code: 'default.button.add.label', default: 'Vote')}" disabled="disabled" />
+					<li class="fieldcontain">
+						<sec:ifAllGranted roles="ROLE_ADMIN">
+							<div id="list-answer" class="content scaffold-list" role="main">
+							<h1>List answers</h1>
+								<g:if test="${flash.message}">
+									<div class="message" role="status">${flash.message}</div>
 								</g:if>
-								<g:else>
-									<g:submitButton name="Vote" class="vote" action="vote" value="${message(code: 'default.button.add.label', default: 'Vote')}"  />
-								</g:else>
-							</li>
-						</g:form>			
+								<table>
+									<thead>
+										<tr><g:sortableColumn property="name" title="Answer" /></tr>
+									</thead>
+									<tbody>
+										<g:each in="${questionInstance.answers_default}" var="answer">
+											<tr><td><g:fieldValue bean="${answer}" field="name"/></td></tr>
+										</g:each>
+									</tbody>
+								</table>
+							</div>	
+						</sec:ifAllGranted>
+							
+						<sec:ifNotLoggedIn>
+							<g:form action="vote" >
+								<g:hiddenField name="idQuestion" value="${questionInstance?.id}" />
+								<li class="fieldcontain">	
+									<g:render template="formDefaultAnswerVote"/>
+									<g:if test="${flash.voted}">
+										<g:submitButton name="Vote" class="vote" action="vote" value="${message(code: 'default.button.add.label', default: 'Vote')}" disabled="disabled" />
+									</g:if>
+									<g:else>
+										<g:submitButton name="Vote" class="vote" action="vote" value="${message(code: 'default.button.add.label', default: 'Vote')}"  />
+									</g:else>
+								</li>
+							</g:form>
+						</sec:ifNotLoggedIn>		
 					</li>
 				</g:if>			
 			</ol>			
@@ -74,6 +95,7 @@
 							</g:if>
 							<g:else>
 								<g:link action="statistics" id="${questionInstance.id}"><g:message code="default.button.statistics.label" default='Statistics'/></g:link>
+								<g:link action="open" id="${questionInstance.id}"><g:message code="default.button.open.label" default='Open'/></g:link>
 							</g:else>
 					</fieldset>
 				</g:form>

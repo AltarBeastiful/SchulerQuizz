@@ -87,6 +87,12 @@ class QuestionController {
 		redirect(action: "show",id: questionInstance.id)
 	}
 	
+	def open(Long id) {
+		def questionInstance = Question.get(id)
+		questionInstance.isClosed = false
+		redirect(action: "show",id: questionInstance.id)
+	}
+	
 	def vote(Long id) {
 		if(session.vote && session.vote[params.idQuestion] && session.vote[params.idQuestion].size() > 0){
 			redirect(action: "show",id: params.idQuestion)			
