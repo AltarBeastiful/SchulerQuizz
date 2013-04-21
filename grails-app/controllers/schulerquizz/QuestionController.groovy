@@ -65,7 +65,7 @@ class QuestionController {
 		def questionInstance = Question.get(id)
 		if (!questionInstance.isClosed)  render(view: "statistics", id: questionInstance.id) // do somthesing else !
 		
-		int total = 1
+		int total = 0
 		// to know how many votes
 		questionInstance.answers_default.each {
 			total = total + it.votes  	
@@ -78,7 +78,6 @@ class QuestionController {
 				percentages[it.id] = (it.votes *100) /total
 				//percentages[it.id] = (it.id *100) /total // to erase when vote system done 
 			}
-			
 			[questionInstance: questionInstance , total_votes: total , percentages: percentages  ]
 		}
 		else return
@@ -125,7 +124,7 @@ class QuestionController {
 		}
 		
 		println session.vote[params.idQuestion]
-		
+		redirect(action: "show", id: params.idQuestion)	
 		
 	}
 
