@@ -12,8 +12,12 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				<sec:ifNotLoggedIn>
+					<li><g:link controller='login' action='auth'>Login as Teacher</g:link></li>
+				</sec:ifNotLoggedIn>
 				<sec:ifAllGranted roles="ROLE_ADMIN">	
 					<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+					<li><g:link controller='logout' >Logout</g:link></li>
 				</sec:ifAllGranted>
 			</ul>
 		</div>

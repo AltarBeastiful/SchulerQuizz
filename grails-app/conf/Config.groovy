@@ -97,7 +97,9 @@ grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/question'
 grails.plugins.springsecurity.interceptUrlMap = [
 //	'/secure/**':    ['ROLE_ADMIN'],
 //	'/finance/**':   ['ROLE_FINANCE', 'IS_AUTHENTICATED_FULLY'],
-//	'/question/create/**':  ['ROLE_ADMIN'],
+	'/question/delete/**':  ['ROLE_ADMIN'],
+	'/question/edit/**':  ['ROLE_ADMIN'],
+	'/question/create/**':  ['ROLE_ADMIN'],
 	'/question/list/**':  ['IS_AUTHENTICATED_ANONYMOUSLY'],
 
 	'/js/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
