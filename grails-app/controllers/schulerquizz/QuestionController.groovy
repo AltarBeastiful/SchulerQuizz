@@ -46,12 +46,10 @@ class QuestionController {
         }
 		
 		def voted = false
-		println "Testing vote with id " + id
-		println session.vote
 		def questionId = String.valueOf(id)
+		flash.vote = [:]
 		
 		if(session.vote && session.vote[questionId] && session.vote[questionId].size() > 0){
-			println "I have voted"
 			voted = true
 			flash.vote = session.vote[questionId]
 		}
@@ -91,12 +89,10 @@ class QuestionController {
 	}
 	
 	def vote(Long id) {
-		println "Vote reached with params : " + params.idQuestion
-		println params.multipleAnswer
+		if(session.vote && session.vote[params.idQuestion] && session.vote[params.idQuestion].size() > 0){
+			redirect(action: "show",id: params.idQuestion)			
+		}
 
-		println params.answers
-
-		// TODO 
 		if(!session.vote)
 			session.vote = [:]			
 		
@@ -109,9 +105,9 @@ class QuestionController {
 			
 			//True to choosed answers
 			params.multipleAnswer.each {
-				session.vote[params.idQuestion][it] = 'true'
-				def a = AnswerDefault.get(it)
-				a.setVotes(a.getVotes()+1)
+					session.vote[params.idQuestion][it] = 'true'
+					def a = AnswerDefault.get(it)
+					a.setVotes(a.getVotes()+1)
 			}
 						
 		}else if(params.answers){
@@ -123,9 +119,7 @@ class QuestionController {
 			a.setVotes(a.getVotes()+1)
 		}
 		
-		println session.vote[params.idQuestion]
-		redirect(action: "show", id: params.idQuestion)	
-		
+		redirect(action: "show",id: params.idQuestion)			
 	}
 
     def edit(Long id) {

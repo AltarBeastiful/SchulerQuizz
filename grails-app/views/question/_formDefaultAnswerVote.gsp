@@ -16,23 +16,17 @@
 		</thead>
 		
 		<tbody>
-			<g:textField name="answered" value="${flash.vote}" />	
-			<g:textField name="rien2" value="${questionInstance.id}" />	
-		
 			<g:each in="${questionInstance.answers_default}" var="answer">
 				<tr>
 					<!-- <td><g:link action="show" id="${answer.id}">${fieldValue(bean: answerDefault, field: "name")}</g:link></td> -->
 					
 					<td><g:fieldValue bean="${answer}" field="name"/></td>
 					
-					<td><g:textField name="rien" value="${answer.id}" />	</td>
-					<td><g:textField name="rien" value="${flash.voted && flash.vote[String.valueOf(answer.id)]? String.valueOf(flash.vote[String.valueOf(answer.id)]) : 'false'}" />	</td>
-					
 					<g:if test="${questionInstance.multipleAnswer }">
-						<td><g:checkBox name="multipleAnswer" value="${answer.id}" checked="${flash.voted && flash.vote[String.valueOf(answer.id)]? String.valueOf(flash.vote[String.valueOf(answer.id)]) : 'false'}" /></td>
+						<td><g:checkBox name="multipleAnswer" value="${answer.id}" checked="${flash.voted && flash.vote[String.valueOf(answer.id)]? String.valueOf(flash.vote[String.valueOf(answer.id)]) : 'false'}" disabled="${flash.voted }" /></td>
 					</g:if>	
 					<g:else>
-						<td><g:radio name="answers" value="${answer.id}" checked="${flash.voted && flash.vote[String.valueOf(answer.id)]? String.valueOf(flash.vote[String.valueOf(answer.id)]) : 'false'}"/></td>
+						<td><g:radio name="answers" value="${answer.id}" checked="${flash.voted && flash.vote[String.valueOf(answer.id)]? String.valueOf(flash.vote[String.valueOf(answer.id)]) : ''}" disabled="${flash.voted }"/></td>
 					</g:else>
 				</tr>
 			</g:each>
