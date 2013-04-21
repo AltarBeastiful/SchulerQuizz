@@ -74,12 +74,11 @@ class QuestionController {
 			def percentages = [:]
 			questionInstance.answers_default.each {
 				percentages[it.id] = (it.votes *100) /total
-				//percentages[it.id] = (it.id *100) /total // to erase when vote system done 
 			}
+			// At list one vote : you can display some stats
 			[questionInstance: questionInstance , total_votes: total , percentages: percentages  ]
 		}
-		else return
-		
+		else  [questionInstance: questionInstance , total_votes: total] // no votes : avoid stats
 	}
 	
 	def close(Long id) {

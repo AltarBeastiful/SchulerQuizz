@@ -16,35 +16,31 @@
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
-		<div id="show-question" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+		<div id="show-question-stat" class="content scaffold-show" role="main">
+			<h1><g:message code="default.stat.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+				<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list question">
 			
-						
 				<g:if test="${questionInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="question.name.label" default="Name" /></span>
-					
+					<li class="fieldcontain">
+						<span id="name-label" class="property-label"><g:message code="question.name.label" default="Name" /></span>
 						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${questionInstance}" field="name"/></span>
-					
-				</li>
+					</li>
 				</g:if>
 			
 				<g:if test="${questionInstance?.text}">
-				<li class="fieldcontain">
-					<span id="text-label" class="property-label"><g:message code="question.text.label" default="Text" /></span>
-					
+					<li class="fieldcontain">
+						<span id="text-label" class="property-label"><g:message code="question.text.label" default="Text" /></span>
 						<span class="property-value" aria-labelledby="text-label"><g:fieldValue bean="${questionInstance}" field="text"/></span>
+					</li>
+				</g:if>				
 					
-				</li>
-				</g:if>					
-				<g:if test="${questionInstance?.answers_default}">
-					<li class="fieldcontain">	
-						<div id="list-answer" class="content scaffold-list" role="main">
-							<h1>Answers Stats : ${total_votes} votes</h1> 
+				<div id="list-answer" class="content scaffold-list" role="main">
+					<h1>Answers Stats : ${total_votes} votes</h1> 
+					<g:if test="${questionInstance?.answers_default && questionInstance?.isClosed  && total_votes  }">
+						<li class="fieldcontain">	
 							<g:if test="${flash.message}">
 								<div class="message" role="status">
 									${flash.message}
@@ -70,16 +66,14 @@
 											<td><g:field name= "amount" type="text" value="${answer.votes}" readonly="readonly" /></td>
 								
 											<td><g:field name= "percentage" type="text" value="${percentages[answer.id]} %" readonly="readonly"  /></td>
-										
 										</tr>
 									</g:each>
 								</tbody>
 							</table>
-						</div>
-					</li>
-				</g:if>			
+						</li>
+					</g:if>	
+				</div>	
 			</ol>			
-			
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${questionInstance?.id}" />
